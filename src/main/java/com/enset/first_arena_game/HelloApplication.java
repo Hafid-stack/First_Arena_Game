@@ -1,5 +1,6 @@
 package com.enset.first_arena_game;
 
+import GameObjects.Player;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 
@@ -16,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class HelloApplication extends Application {
-    private Node Player;
+   private Player player;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,6 +30,7 @@ public class HelloApplication extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         root.getChildren().add(canvas);
         //Passing the Pane to the scene
+        player = new Player(20, 20, 50, 50);
         Scene scene = new Scene(root,800,600);
         //root.getChildren().add(Player);
 

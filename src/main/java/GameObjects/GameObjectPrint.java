@@ -54,7 +54,10 @@ private double width, height;
     }
 
 
-    public abstract void upDate(Set<KeyCode> activeKeys);
+
+
+    public abstract void update(Set<KeyCode> activeKeys);
+
     public abstract void render(GraphicsContext cg);
     public abstract void onCollision(GameObjectPrint otherObject);
 }
