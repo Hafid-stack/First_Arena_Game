@@ -1,23 +1,24 @@
 package GameObjects;
 
-import java.awt.*;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+
+import java.util.Set;
+
 
 public abstract class GameObjectPrint {
 private double posX, posY;
 private double width, height;
-private double movmentX, movmentY;
+
 
     public GameObjectPrint() {
     }
 
-    public GameObjectPrint(double posX, double posY, double width, double height, double movmentX, double movmentY) {
-
-        this.posX = posX;
-        this.posY = posY;
-        this.width = width;
+    public GameObjectPrint(double height, double width, double posY, double posX) {
         this.height = height;
-        this.movmentX = movmentX;
-        this.movmentY = movmentY;
+        this.width = width;
+        this.posY = posY;
+        this.posX = posX;
     }
 
     public double getPosX() {
@@ -52,23 +53,8 @@ private double movmentX, movmentY;
         this.height = height;
     }
 
-    public double getMovmentX() {
-        return movmentX;
-    }
 
-    public void setMovmentX(double movmentX) {
-        this.movmentX = movmentX;
-    }
-
-    public double getMovmentY() {
-        return movmentY;
-    }
-
-    public void setMovmentY(double movmentY) {
-        this.movmentY = movmentY;
-    }
-
-    public abstract void upDate();
-    public abstract void render();
+    public abstract void upDate(Set<KeyCode> activeKeys);
+    public abstract void render(GraphicsContext cg);
     public abstract void onCollision(GameObjectPrint otherObject);
 }
