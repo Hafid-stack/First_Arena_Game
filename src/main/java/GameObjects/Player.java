@@ -56,7 +56,11 @@ public class Player extends GameObjectPrint {
     @Override
     public void onCollision(GameObjectPrint otherObject) {
 if (otherObject.getPosX()+5== getPosX()) {
-    dead=false;
+    health= health-5;
+    if (health<=0) {
+        dead=true;
+    }
+
     //I will have this boolean getter in the animation time if its turn to false the game ends
 }
     }

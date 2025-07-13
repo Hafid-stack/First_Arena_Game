@@ -1,5 +1,7 @@
 package com.enset.first_arena_game;
 
+
+import GameObjects.EnemyArc;
 import GameObjects.Player;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -18,6 +20,7 @@ import java.util.Set;
 
 public class HelloApplication extends Application {
    private Player player;
+   private EnemyArc enemy;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,28 +34,33 @@ public class HelloApplication extends Application {
         root.getChildren().add(canvas);
         //Passing the Pane to the scene
         player = new Player(20, 20, 50, 50);
+        enemy = new EnemyArc(20,20,100,100);
         Scene scene = new Scene(root,800,600);
         //root.getChildren().add(Player);
 
         scene.setOnKeyPressed(event -> {
             activeKeys.add(event.getCode());
-            System.out.println("testing if keypressed");
+            //System.out.println("testing if keypressed");
 
         });
         scene.setOnKeyReleased(event -> {
             activeKeys.remove(event.getCode());
-            System.out.println("testing if keyreleased");
+            //System.out.println("testing if keyreleased");
         });
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 // Clear the canvas for the next frame
                 gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+enemy.onCollision(player);
                 // Update game objects (including player movement based on activeKeys)
                 // Note: We're passing the activeKeys set to the player's update method
                 player.update(activeKeys); // We're not using deltaTime yet, as per your preference
-
+                if (enemy.isAlive()){
+                    enemy.render(gc);
+                }else {
+                    enemy.objectExecuted(gc);
+                }
                 // Render game objects
                 player.render(gc); // Pass the GraphicsContext to the player to draw itself
 
